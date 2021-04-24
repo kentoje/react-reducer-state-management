@@ -1,6 +1,5 @@
 import { ENUM_ACTIONS } from './constants'
 
-// Actions definition
 const initAction = (data) => ({
   type: ENUM_ACTIONS.initialize,
   payload: data,
@@ -18,10 +17,7 @@ const toggleAction = (data) => ({
   payload: data,
 })
 
-// Data manipulation
-const init = (data) => {
-  return data
-}
+const init = (data) => data
 const create = (state, data) => [
   {
     id: data.id,

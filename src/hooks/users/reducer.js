@@ -5,9 +5,7 @@ const initAction = (data) => ({
   payload: data,
 })
 
-const init = (data) => {
-  return data
-}
+const init = (data) => data
 
 const reducer = (state, action) => {
   switch (action.type) {
