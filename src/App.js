@@ -2,8 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Todo from './pages/Todo'
-import TodoWrapper from './hoc/TodoWrapper'
-
+import { Provider as TodoProvider } from './hooks/todos/useTodo'
 
 const App = () => {
 
@@ -14,9 +13,9 @@ const App = () => {
       </ul>
       <Switch>
         <Route path="/todo/:userId">
-          <TodoWrapper>
+          <TodoProvider>
             <Todo />
-          </TodoWrapper>
+          </TodoProvider>
         </Route>
         <Route path="/">
           <Home />
