@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, createContext } from 'react'
-import { reducer, createAction, initAction } from './reducer'
+import { reducer, createAction, initAction, toggleAction } from './reducer'
 
 const Context = createContext()
 
@@ -16,7 +16,7 @@ const Provider = (props) => {
   }, [props.id])
 
   return (
-    <Context.Provider value={{ state, createAction, dispatch }}>
+    <Context.Provider value={{ state, dispatch, createAction, toggleAction }}>
       {props.children}
     </Context.Provider>
   )

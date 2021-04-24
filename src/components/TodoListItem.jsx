@@ -1,8 +1,13 @@
 import React from 'react'
 
-const TodoListItem = ({ todo }) => {
+const TodoListItem = ({ todo, toggle }) => {
   return (
-    <li>
+    <li
+      onClick={() => {
+        toggle(todo.id)
+      }}
+      style={{ textDecoration: todo.completed && 'line-through' }}
+    >
       {todo.title}
     </li>
   )

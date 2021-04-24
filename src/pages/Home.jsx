@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       {
-        users ? <UserList users={users} /> : null
+        users && <UserList users={users} />
       }
     </>
   )
