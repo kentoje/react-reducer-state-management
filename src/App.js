@@ -1,24 +1,19 @@
 import React from 'react'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
-import Home from './pages/Home'
-import Todo from './pages/Todo'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { Provider as UsersProvider } from './context/usersContext'
+import Routes from './routes/Routes'
 
 const App = () => {
 
   return (
-    <Router>
-      <ul>
-        <Link to="/">Home</Link>
-      </ul>
-      <Switch>
-        <Route path="/todo/:userId">
-          <Todo />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <UsersProvider>
+      <Router>
+        <ul>
+          <Link to="/">Home</Link>
+        </ul>
+        <Routes />
+      </Router>
+    </UsersProvider>
   )
 }
 
