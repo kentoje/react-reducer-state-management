@@ -1,29 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
 import TodoList from '../components/TodoList'
 import { v4 } from 'uuid'
+import { Context } from '../hooks/todos/useTodo'
 
 const Todo = () => {
-  const { userId } = useParams()
-  const [todos, setTodos] = useState(null)
+  const { state, dispatch, createAction } = useContext(Context)
   const [inputValue, setInputValue] = useState('')
-
-  const intialTodo = {
-    id: v4(),
-  }
-
-  const addTodo = (todo) => {
-    setTodos([todo, ...todos])
-  }
-
-  useEffect(() => {
-    ;(async () => {
-      const res = await fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
-      const data = await res.json()
-
-      setTodos(data)
-    }) ()
-  }, [userId])
 
   return (
     <>
@@ -31,10 +13,15 @@ const Todo = () => {
         setInputValue(event.target.value)
       }} />
       <button onClick={() => {
-        addTodo({ ...intialTodo, title: inputValue })
-      }}>Add Todo</button>
+        dispatch(createAction({
+          id: v4(),
+          title: inputValue
+        }))
+      }}>
+        Add Todo
+      </button>
       {
-        todos ? <TodoList todos={todos} /> : null
+        state ? <TodoList todos={state} /> : null
       }
     </>
   )
