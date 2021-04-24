@@ -1,10 +1,8 @@
-import React, { useEffect, useReducer, createContext } from 'react'
+import { useEffect, useReducer } from 'react'
 import { reducer, createAction, initAction, toggleAction } from './reducer'
 import { useParams } from 'react-router-dom'
 
-const Context = createContext()
-
-const Provider = (props) => {
+const useTodo = () => {
   const [state, dispatch] = useReducer(reducer, [])
   const { userId } = useParams()
 
@@ -17,14 +15,14 @@ const Provider = (props) => {
     })()
   }, [userId])
 
-  return (
-    <Context.Provider value={{ state, dispatch, createAction, toggleAction }}>
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    state,
+    dispatch,
+    createAction,
+    toggleAction,
+  }
 }
 
 export {
-  Provider,
-  Context,
+  useTodo,
 }
